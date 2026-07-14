@@ -1,0 +1,305 @@
+/* Variables del tema base */
+:root {
+    --bg-dark: rgba(6, 7, 19, 0.85);
+    --neon-blue: #00f0ff;
+    --neon-pink: #ff007f;
+    --neon-yellow: #ffeb3b;
+    --road-color: rgba(12, 15, 43, 0.9);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #03040a;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Canvas del Fondo */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Pantallas modales */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 5, 15, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.card {
+    background: linear-gradient(135deg, #0e1133 0%, #050614 100%);
+    border: 3px solid var(--neon-blue);
+    box-shadow: 0 0 30px var(--neon-blue);
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 520px;
+    width: 90%;
+}
+
+.card h1 {
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+.card h2 {
+    font-size: 2.1rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px var(--neon-pink);
+    color: var(--neon-pink);
+}
+
+.separator {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    margin: 18px 0;
+}
+
+.meta-info {
+    font-size: 1.1rem;
+    color: #b0bec5;
+    margin: 8px 0;
+}
+
+/* Reporte de Estadísticas */
+.stats-report {
+    width: 100%;
+    margin: 15px auto;
+    text-align: left;
+    font-size: 1.15rem;
+    line-height: 2.2rem;
+    background: rgba(0,0,0,0.3);
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.stats-report p {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+.summary-text {
+    margin: 10px 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.highlight { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
+.highlight-blue { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
+.highlight-yellow { color: #ffaa00; text-shadow: 0 0 5px #ffaa00; font-size: 1.3rem; }
+.highlight-green { color: #00ff66; text-shadow: 0 0 8px #00ff66; font-size: 1.35rem; }
+.highlight-lives { letter-spacing: 2px; color: #ff4d4d; text-shadow: 0 0 8px rgba(255, 77, 77, 0.5); }
+
+/* Botones */
+.btn {
+    background: var(--neon-pink);
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: .3s;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px var(--neon-pink);
+}
+
+.btn-small {
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+.btn-small:hover { background: #b71c1c; }
+
+/* Interfaz UI (Nivel -> Vidas -> Puntos -> Tiempo) */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 620px;
+    z-index: 2;
+}
+
+.header-ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(15, 17, 56, 0.95);
+    border: 2px solid #283593;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 240, 255, .3);
+}
+
+.stat-box {
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.stat-box span {
+    color: var(--neon-blue);
+}
+
+/* Arena de Juego */
+.galaxy-arena {
+    padding: 8px;
+    background: rgba(5, 7, 28, 0.9);
+    border: 4px solid var(--neon-blue);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+}
+
+.maze-grid {
+    display: grid;
+    grid-template-columns: repeat(15, 32px);
+    grid-template-rows: repeat(15, 32px);
+    gap: 0;
+}
+
+/* Celdas del Tablero */
+.cell {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo Base de las Paredes */
+.wall {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background-color 0.5s ease;
+}
+
+.road {
+    background-color: var(--road-color);
+}
+
+/* Puntos comibles */
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-yellow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--neon-yellow);
+}
+
+/* Emojis de Frutas Especiales */
+.fruit-hide, .fruit-eat {
+    font-size: 1.4rem;
+    position: absolute;
+    z-index: 2;
+    animation: fruitPulse 0.6s infinite alternate;
+}
+
+/* Personaje Pac-Man */
+.pacman {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 12px #ffffff;
+    z-index: 3;
+    animation: pulse .5s infinite alternate;
+}
+
+/* Fantasmas */
+.ghost {
+    width: 25px;
+    height: 25px;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.12s linear;
+}
+
+/* Estados Especiales Visuales de los Fantasmas */
+.ghost.invisible-mode {
+    opacity: 0.15 !important;
+    background-color: #555 !important;
+    box-shadow: none !important;
+}
+
+.ghost.vulnerable-mode {
+    background-color: #0022ff !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px #0022ff !important;
+    animation: blink 0.3s infinite alternate;
+}
+
+.ghost-red { background-color: #ff3333; box-shadow: 0 0 10px #ff3333; }
+.ghost-blue { background-color: #33b5e5; box-shadow: 0 0 10px #33b5e5; }
+.ghost-yellow { background-color: #ffbb33; box-shadow: 0 0 10px #ffbb33; }
+.ghost-pink { background-color: #ff88c2; box-shadow: 0 0 10px #ff88c2; }
+
+.card.error { border-color: #ff4444; box-shadow: 0 0 25px #ff4444; }
+.card.error h2 { color: #ff4444; }
+
+.card.gold { border: 3px solid var(--neon-yellow); box-shadow: 0 0 35px var(--neon-yellow); }
+.card.gold h2 { color: var(--neon-yellow); text-shadow: 0 0 15px var(--neon-yellow); }
+
+/* Animaciones Keyframes */
+@keyframes pulse { from { transform: scale(0.95); } to { transform: scale(1.1); } }
+@keyframes blink { from { opacity: 1; } to { opacity: 0.3; } }
+@keyframes fruitPulse { from { transform: scale(0.9) rotate(-5deg); } to { transform: scale(1.2) rotate(5deg); } }
+
+@media(max-width:700px) {
+    .maze-grid { grid-template-columns: repeat(15, 22px); grid-template-rows: repeat(15, 22px); }
+    .cell { width: 22px; height: 22px; }
+    .pacman, .ghost { width: 18px; height: 18px; }
+    .fruit-hide, .fruit-eat { font-size: 1rem; }
+    .header-ui { flex-direction: column; gap: 8px; text-align: center; }
+}
