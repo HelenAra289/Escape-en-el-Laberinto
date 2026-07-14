@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape en el Laberinto</title>
+    <link rel="stylesheet" href="juego.css">
+</head>
+<body>
+
+    <!-- PANTALLA DE INICIO -->
+    <div id="start-screen" class="screen">
+        <div class="card">
+            <h1>ESCAPE EN EL LABERINTO</h1>
+            <p class="meta-info">Curso: Producción de Contenidos Digitales</p>
+            <p class="meta-info">Creado por: Helen Aracely López López</p>
+            <button id="btn-start" class="btn">INICIAR</button>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DEL JUEGO (GALAXIA) -->
+    <div id="game-container" class="hidden">
+        <div class="header-ui">
+            <div class="stat-box">NIVEL: <span id="ui-level">1</span>/10</div>
+            <div class="stat-box">PUNTOS: <span id="ui-score">0</span></div>
+            <div class="stat-box">VIDAS: <span id="ui-lives">❤️❤️❤️</span></div>
+            <button id="btn-reset" class="btn-small">REINICIAR JUEGO</button>
+        </div>
+
+        <!-- ÁREA DE JUEGO (GALAXIA) -->
+        <div class="galaxy-arena">
+            <div id="maze" class="maze-grid"></div>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE NIVEL COMPLETADO (Actualizada con los nuevos requerimientos) -->
+    <div id="level-screen" class="screen hidden">
+        <div class="card">
+            <h2 id="level-msg">Nivel 1 completado</h2>
+            <hr class="separator">
+            <div class="stats-report">
+                <p>Puntos en este nivel: <strong id="level-points" class="highlight">0</strong></p>
+                <p>Puntuación Total acumulada: <strong id="level-total-score" class="highlight-blue">0</strong></p>
+                <p>Vidas actuales: <strong id="level-lives" class="highlight-lives">❤️❤️❤️</strong></p>
+            </div>
+            <button id="btn-next" class="btn">SIGUIENTE NIVEL</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE GAME OVER -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="card error">
+            <h2>GAME OVER</h2>
+            <p>Te has quedado sin vidas.</p>
+            <button id="btn-restart-over" class="btn">INTENTAR DE NUEVO</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE FELICIDADES (VICTORIA TOTAL) -->
+    <div id="victory-screen" class="screen hidden">
+        <div class="card gold">
+            <h2>¡FELICIDADES!</h2>
+            <p>Has superado con éxito la galaxia entera.</p>
+            <hr class="separator">
+            <p class="summary-text">TOTAL DE PUNTOS RECOLECTADOS: <span id="total-score" class="highlight-blue">0</span></p>
+            <p class="summary-text">CANTIDAD DE VIDAS AL FINALIZAR: <span id="total-lives" class="highlight-lives">0</span></p>
+            <button id="btn-restart-victory" class="btn">JUGAR OTRA VEZ</button>
+        </div>
+    </div>
+
+    <script src="juego.js"></script>
+</body>
+</html>
